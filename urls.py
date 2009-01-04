@@ -4,7 +4,7 @@ from django.conf.urls.defaults import *
 urlpatterns = patterns('',
 	# References to blog
 	(r'^blog/$', 'blogiix.views.index'),
-    (r'^$', 'blogiix.views.index'),
+    #(r'^$', 'blogiix.views.index'),
 
 	# Short URL
 	(r'^s/(?P<short_hash>\w+)/$', 'blogiix.views.short_url'),
