@@ -15,7 +15,7 @@ def index(request):
 	allPosts = Post.objects.order_by('-date_posted')
 	post = Post.objects.filter(preview=False).order_by('-date_posted')[0]
 	
-	return post_view(request, post.date_posted.year,post.month,post.day,post.url_title())
+	return post_view(request, post.date_posted.year,post.date_posted.month,post.date_posted.day,post.url_title())
 	
 def post_view(request, year, month, day, url_title):
 	title_from_url = Post.title_from_url(url_title)
