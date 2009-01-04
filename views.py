@@ -15,11 +15,11 @@ def index(request):
 	allPosts = Post.objects.order_by('-date_posted')
 	post = Post.objects.filter(preview=False).order_by('-date_posted')[0]
 	
-	return post_view(request, post.date_posted.year,post.date_posted.month,post.date_posted.day,post.url_title())
+	return post_view(request, post.date_posted.year,post.month(),post.day(),post.url_title())
 	
 def post_view(request, year, month, day, url_title):
 	title_from_url = Post.title_from_url(url_title)
-	post = Post.objects.filter(date_posted__year=year).filter(date_posted__month=month).filter(date_posted__day=day).filter(title = title_from_url)[0]
+	post = Post.objects.filter(date_posted__year=year).filter(date_posted__month=int(month)).filter(date_posted__day=int(day)).filter(title = title_from_url)[0]
 	comments = Comment.objects.filter(post__id=post.pk).filter(is_spam=False).order_by('date_posted')
 	post.views = post.views + 1
 	post.save()
