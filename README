@@ -4,11 +4,12 @@ Blogiix
 To Use:
     1) Install Dependencies
     2) Copy exampleconfig.py to config.py and add proper data.
-    3) Create Templates
+    3) Tie a Django project to it, with proper templates.
 
 Dependencies:
     - Pygments
     - Django Trunk
+    - Python 2.4.x
     
     
 Note:
