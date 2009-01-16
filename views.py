@@ -78,12 +78,11 @@ def post_comment(request, id):
 	valid = False
 	spam = 0
 	
-	
 	#Check if the form is valid
 	form = CommentForm(request.POST)
 	if not form.is_valid():
 		return render_to_response('blog/comment_invalid.html', {'post': post, 'form': form }, RequestContext(request))
-	
+			
 	# Now that comment is valid, check if it is spam
 	api = Akismet(key=BlogConfig.akismet_key, blog_url=BlogConfig.url, agent=None)
 	if api.verify_key():
