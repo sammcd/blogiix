@@ -16,10 +16,15 @@ class Post(models.Model):
 	preview = models.BooleanField(default=False)
 	def __unicode__(self):
 		return self.title
-		
+
 	@models.permalink
 	def get_absolute_url(self):
-		return ('blog.views.post_view', [self.date_posted.year, self.month(), self.day(), self.url_title()])
+		return ('post_view', (), {
+			'year': self.date_posted.year,
+			'month': self.month(),
+			'day': self.day(),
+			'url_title': self.url_title()})
+		#return ('blog.views.post_view', [self.date_posted.year, self.month(), self.day(), self.url_title()])
 		#return "/blog/%s/%s/%s/%s" % (self.date_posted.year, self.month(), self.day(), self.url_title())
 		
 	def url_title(self):

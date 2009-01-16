@@ -20,8 +20,10 @@ urlpatterns = patterns('',
 	#Legacy URLs
 	(r'^post/(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/(?P<url_title>[a-zA-Z0-9_|-]+)', 'blogiix.views.post_view'),
 	
-	#Newer URLS
-	(r'^blog/(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/(?P<url_title>[a-zA-Z0-9_|-]+)', 'blogiix.views.post_view'),
+	#Newer URLS  (named for get_absolute_url)
+	url(r'^blog/(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/(?P<url_title>[a-zA-Z0-9_|-]+)', 
+		'blogiix.views.post_view',
+		name='post_view'),
 	
 	
 	# Form Submissions

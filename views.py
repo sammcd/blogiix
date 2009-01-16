@@ -50,6 +50,7 @@ def day_view(request, year, month, day):
 		RequestContext(request))	
 		
 def archive_view(request):
+	
 	posts = Post.objects.filter(preview=False).order_by('-date_posted')
 	year_array = [];
 	
@@ -64,10 +65,8 @@ def archive_view(request):
 		 	next_cut = count + 1
 		
 	year_array.append( {'year': current_year, 'posts' : posts[next_cut:] } )
-	
-		
-	test = 'what'
-	return render_to_response('blog/archive_view.html', {'test':count, 'years': year_array, 'posts':posts}, RequestContext(request))		
+			
+	return render_to_response('blog/archive_view.html', { 'years': year_array, 'posts':posts}, RequestContext(request))		
 
 ############################################################################
 # Displaying Comments
