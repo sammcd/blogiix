@@ -1,0 +1,23 @@
+Blogiix
+- A simple django blog app used by http://sammcd.com
+
+To Use:
+    1) Install Dependencies
+    2) Copy exampleconfig.py to config.py and add proper data.
+    3) Create Templates
+
+Dependencies:
+    - Pygments
+    - Django Trunk
+    
+    
+Note:
+
+As you can see this is only meant to be used by me right now, hence the hard installation process.  If you are looking for a
+better django blog app you might want google it, there are may of them.  However feel free to use mine!  If you can work 
+through the pain of installation.  Feel free to contact me (sam@sammcd.com) if you have any questions.
+
+
+Development:
+
+If you would like to update this app just create your own fork and notifiy of any cool changes.
