@@ -10,7 +10,7 @@ urlpatterns = patterns('',
 	(r'^s/(?P<short_hash>\w+)/$', 'blogiix.views.short_url'),
 	
 	# Archive view
-	(r'^archive$', 'blogiix.views.archive_view'),
+	(r'^blog/archive$', 'blogiix.views.archive_view'),
 	
 	# Each part of the long URL
 	(r'^blog/(?P<year>\d{4})/$', 'blogiix.views.year_view'),
@@ -29,5 +29,5 @@ urlpatterns = patterns('',
 	# Form Submissions
 	(r'^blog/post-comment/(?P<id>\d*)/$', 'blogiix.views.post_comment'),
 	
-	(r'^feeds/rss', 'blogiix.views.rss_feed'),
+	(r'^blog/feeds/rss', 'blogiix.views.rss_feed'),
 )
