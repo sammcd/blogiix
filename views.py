@@ -90,9 +90,9 @@ def post_comment(request, id):
 		valid = True
 		
 		# Create Data object
-		# TODO: Add perma link
+		# todo: Add perma link
 		data = {}
-		#data['user_ip'] = request_meta['REMOTE_ADDR']
+		data['user_ip'] = request_meta['HTTP_X_FORWARDED_FOR']
 		data['user_agent'] = request_meta['HTTP_USER_AGENT']
 		data['comment_type'] = 'comment'
 		data['comment_author'] = cin['name']
@@ -100,12 +100,12 @@ def post_comment(request, id):
 		data['comment_author_url'] = cin['url']
 		
 		
-		#if 'HTTP_REFERER' in request_meta:
-			#data['referrer'] = request_meta['HTTP_REFERER']
+		if 'HTTP_REFERER' in request_meta:
+			data['referrer'] = request_meta['HTTP_REFERER']
 		
-		#if api.comment_check(cin['text'], data):
+		if api.comment_check(cin['text'], data):
 			# True means spam
-			#spam = 1
+			spam = 1
 	
 	c = Comment(post=post, text=cin['text'], name=cin['name'], email=cin['email'], url=cin['url'], is_spam=spam)
 	c.save()
