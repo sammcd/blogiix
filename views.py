@@ -4,6 +4,7 @@ from blogiix.config import BlogConfig
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponsePermanentRedirect
+from django.http import Http404
 
 from blogiix.akismet import Akismet
 
@@ -19,8 +20,12 @@ def index(request):
 	
 def post_view(request, year, month, day, url_title):
 	title_from_url = Post.title_from_url(url_title)
-	post = Post.objects.filter(date_posted__year=year).filter(date_posted__month=int(month)).filter(date_posted__day=int(day)).filter(title = title_from_url)[0]
-	comments = Comment.objects.filter(post__id=post.pk).filter(is_spam=False).order_by('date_posted')
+	post = Post.objects.filter(date_posted__year=year).filter(date_posted__month=int(month)).filter(date_posted__day=int(day)).filter(title = title_from_url)
+	if len(post) == 0:
+		raise Http404
+	post = post[0]	
+	comments = Comment.objects.filter(post__id=post.pk).filter(is_spam=False).order_by('date_posted') 
+	print comments[0].relative_time()
 	post.views = post.views + 1
 	post.save()
 	form = CommentForm()
@@ -92,6 +97,7 @@ def post_comment(request, id):
 		# Create Data object
 		# TODO: Add perma link
 		data = {}
+		
 		data['user_ip'] = request_meta['REMOTE_ADDR']
 		data['user_agent'] = request_meta['HTTP_USER_AGENT']
 		data['comment_type'] = 'comment'

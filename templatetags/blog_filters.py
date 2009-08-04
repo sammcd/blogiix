@@ -3,7 +3,9 @@ from django.template.defaultfilters import stringfilter
 from pygments import highlight
 from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter
-import re
+import re                   
+
+import urllib, hashlib
 
 register = template.Library()
 
@@ -47,7 +49,22 @@ def code_convert(value):
 	
 	else:
 		return value
+ 
+@register.filter(name='relative_time')
+def relative_time(timestamp):
+	
+	return timestamp
+                            
+@register.filter(name='gravatar')
+def gravatar(email):
+	# Size of gravitar
+	size = 45
 
+	# construct the url
+	gravatar_url = "http://www.gravatar.com/avatar/"
+	gravatar_url += hashlib.md5(email).hexdigest()
+	gravatar_url += '?d=identicon'
+	return gravatar_url
 
 @register.filter(name='newline_to_p')
 @stringfilter
