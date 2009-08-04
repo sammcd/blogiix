@@ -95,10 +95,10 @@ def post_comment(request, id):
 		valid = True
 		
 		# Create Data object
-		# TODO: Add perma link
+		# todo: Add perma link
 		data = {}
-		
-		data['user_ip'] = request_meta['REMOTE_ADDR']
+
+		data['user_ip'] = request_meta['HTTP_X_FORWARDED_FOR']
 		data['user_agent'] = request_meta['HTTP_USER_AGENT']
 		data['comment_type'] = 'comment'
 		data['comment_author'] = cin['name']
