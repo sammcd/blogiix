@@ -5,7 +5,10 @@ urlpatterns = patterns('',
 	# References to blog
 	(r'^blog/$', 'blogiix.views.index'),
     #(r'^$', 'blogiix.views.index'),
-
+  
+  # Current post
+  (r'^blog/current_post/?$', 'blogiix.views.current_post'),
+  
 	# Short URL
 	(r'^s/(?P<short_hash>\w+)/$', 'blogiix.views.short_url'),
 	

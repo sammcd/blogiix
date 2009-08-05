@@ -26,9 +26,7 @@ class Post(models.Model):
       'year': self.date_posted.year,
       'month': self.month(),
       'day': self.day(),
-      'url_title': self.url_title()})
-    #return ('blog.views.post_view', [self.date_posted.year, self.month(), self.day(), self.url_title()])
-    #return "/blog/%s/%s/%s/%s" % (self.date_posted.year, self.month(), self.day(), self.url_title())
+      'url_title': self.url_title()})                            
     
   def url_title(self):
     p = re.compile('\s')
@@ -77,7 +75,7 @@ class Comment(models.Model):
   post = models.ForeignKey(Post, blank=True)
   text = models.TextField()
   name = models.CharField(max_length = 50)
-  email = models.EmailField(blank=True)
+  email = models.EmailField()
   url = models.CharField(max_length = 100, blank=True)
   is_owner = models.BooleanField(blank=True, default=False)
   email_sent = models.BooleanField(blank=True, default=False)

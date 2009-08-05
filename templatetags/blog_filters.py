@@ -54,6 +54,20 @@ def code_convert(value):
 def relative_time(timestamp):
 	
 	return timestamp
+
+@register.filter(name='encode_email')
+@stringfilter
+def encode_email(email):
+  new_string = ''
+  last_letter = email[-1]
+  for char in email:
+    # Mix both html-ascii and actual characters
+    if char == last_letter:  
+      new_string = new_string + last_letter
+    else:
+      new_string = new_string + '&#' + str(ord(char)) + ';'       
+  return new_string
+
                             
 @register.filter(name='gravatar')
 def gravatar(email):
