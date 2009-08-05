@@ -16,10 +16,7 @@ from blogiix.akismet import Akismet
 ############################################################################
 
 def index(request):
-  allPosts = Post.objects.order_by('-date_posted')
-  post = Post.objects.filter(preview=False).order_by('-date_posted')[0]
-  
-  return post_view(request, post.date_posted.year,post.month(),post.day(),post.url_title())
+  return current_post(request)
   
 def current_post(request):
   allPosts = Post.objects.order_by('-date_posted')

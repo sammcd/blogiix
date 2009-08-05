@@ -3,7 +3,7 @@ from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
 	# References to blog
-	(r'^blog/$', 'blogiix.views.index'),
+	(r'^blog/?$', 'blogiix.views.index'),
     #(r'^$', 'blogiix.views.index'),
   
   # Current post
